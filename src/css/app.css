@@ -1,37 +1,86 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    width: 90vw;
-    height: 80vh;
-    margin: auto;
-    justify-content: start;
-    padding-top: 0.4rem;
-    align-items: center;
-}
-.button-list{
-    margin-bottom: 1.5rem;
-}
-.chapters-container{
-    display:flex;
-    flex-direction: row;
-    flex-wrap:wrap;
-    width: 60vw;
-    height: 40vh;
-    gap: 15px;
-    margin:auto;
+a {
+  text-decoration: none;
 }
 
-.chapter-select{
-    width: 3.5vw;
-    height: 6vh;
-    padding: 0.5rem;
-    background-color: white;
-    color: black;
-    font-size: 22px;
-    text-align: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 95vw;
+  max-width: 90%;
+  margin: auto;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.selected{
-    background-color: rgb(44, 227, 227);
-    color: white;
+.button-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.button-list button {
+  flex: 1 1 120px;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.progress-buttons {
+  flex: 1 1 120px;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(30, 180, 180);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button-list button:hover {
+  background-color: rgb(30, 180, 180);
+}
+
+.button-list button.active {
+  background-color: rgb(20, 140, 140);
+}
+
+.chapters-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60vw;
+  height: 40vh;
+  gap: 15px;
+  margin: auto;
+}
+
+.chapter-select {
+  width: 3.5vw;
+  height: 6vh;
+  padding: 0.5rem;
+  background-color: white;
+  color: black;
+  font-size: 22px;
+  text-align: center;
+}
+
+.selected {
+  background-color: rgb(44, 227, 227);
+  color: white;
+}
+
+.active {
+  background-color: rgb(44, 227, 227);
+  color: white;
 }

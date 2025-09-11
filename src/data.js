@@ -74,6 +74,7 @@ export const data = [
     { label: "Profetas (Maiores)", group: "profetas_maiores" },
     { label: "Profetas (Menores)", group: "profetas_menores" },
     { label: "Evangelhos", group: "evangelhos" },
+    { label: "Históricos (N.T)", group: "nt_historicos" },
     { label: "Epístolas de Paulo", group: "cartas_paulo" },
     { label: "Outras Epístolas", group: "outras_epistolas" },
     { label: "Profecias", group: "profecias" },

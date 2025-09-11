@@ -36,22 +36,25 @@ export default function Ajustes() {
         reader.readAsText(file);
     }
 
-    return (
-        <>
-        {/* a fazer */}
-            <Navbar />
+    return (<>
+        <Navbar />
+        <div className="container">
+            {/* a fazer */}
+
             Ajustes
 
-            <div className="progress-buttons">
-                <button onClick={exportProgresso}>Exportar Progresso</button>
+            <div>
+                <button className="progress-buttons" onClick={exportProgresso}>Exportar Progresso</button>
                 <input
                     type="file"
                     accept=".json"
                     onChange={importProgresso}
+                    className="progress-buttons"
                     style={{ display: "inline-block", marginLeft: "10px" }}
                 />
             </div>
 
-        </>
+        </div>
+    </>
     );
 }

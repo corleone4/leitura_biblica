@@ -46,7 +46,13 @@ export default function App() {
       <div className="container">
         <div className="button-list">
           {filters.map((filter) => (
-            <button key={filter.group} onClick={() => handleBookFilter(filter.group)}>{filter.label}</button>
+            <button
+              key={filter.group}
+              onClick={() => handleBookFilter(filter.group)}
+              className={bookFilter === filter.group ? "active" : ""}
+            >
+              {filter.label}
+            </button>
           ))}
         </div>
         {books

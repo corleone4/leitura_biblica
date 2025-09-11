@@ -47,8 +47,8 @@ progress::-moz-progress-bar {
 .book {
   display: flex;
   flex-direction: column;
-  width: 25rem;
-  gap: 4px;  
+  width: 23rem;
+  gap: 4px;
 }
 
 .book-title {
@@ -56,4 +56,9 @@ progress::-moz-progress-bar {
   color: white;
   margin: 0;
   font-size: 18px;
+}
+
+.chapters-remaining{
+  color: white;
+  font-size:18px;
 }

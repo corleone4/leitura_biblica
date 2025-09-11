@@ -1,11 +1,10 @@
 import { useState } from "react";
 import "../css/navbar.css"
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 
 export default function Navbar() {
 
     const [openNav, setOpenNav] = useState(false);
-
     function handleOpenNav() {
         setOpenNav(prevState => !prevState);
     }
@@ -21,9 +20,9 @@ export default function Navbar() {
 
             </div>
             <nav className={`navbar-items-center ${openNav ? "navbar-toggle-show navbar-items-right" : ""}`}>
-                <Link to="/" className="navbar-link"><button>Início</button></Link>
-                <Link to="/metas" className="navbar-link"><button>Metas</button></Link>
-                <Link to="/ajustes" className="navbar-link"><button>Ajustes</button></Link>
+                <NavLink to="/" className={`navbar-link ${isActive => isActive ? 'active' : ''}`}><button>Início</button></NavLink>
+                <NavLink to="/metas" className={`navbar-link ${isActive => isActive ? 'active' : ''}`}><button>Metas</button></NavLink>
+                <NavLink to="/ajustes" className={`navbar-link ${isActive => isActive ? 'active' : ''}`}><button>Ajustes</button></NavLink>
             </nav>
         </div>
     );
