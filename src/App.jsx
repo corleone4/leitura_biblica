@@ -1,29 +1,75 @@
 import "./css/app.css";
 import Navbar from "./components/Navbar";
-import ProgressBar from "./components/ProgressBar";
 import Book from "./components/Book";
-import { biblia_pentateuco } from "./data/data";
-// import { useState } from "react";
+import { data, filters } from "./data";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+
 export default function App() {
+  const [books, setBooks] = useState([]);
+  const [progress, setProgress] = useState({});
+  const [bookFilter, setBookFilter] = useState(() => {
+    return localStorage.getItem("filter") || "pentateuco";
+  });
+  useEffect(() => {
+    setBooks(data);
+    const saved = JSON.parse(localStorage.getItem("progress")) || {};
+    setProgress(saved);
+  }, []);
 
-  // const [biblia, setBiblia] = useState(1189);
+  useEffect(() => {
+    localStorage.setItem("filter", bookFilter);
+  }, [bookFilter]);
 
+  useEffect(() => {
+    localStorage.setItem("progress", JSON.stringify(progress));
+  }, [progress]);
 
+  function handleBookFilter(filterName) {
+    setBookFilter(filterName);
+  }
+
+  const markChapterAsRead = (bookName, chapter) => {
+    setProgress((prev) => {
+      const updated = { ...prev };
+      if (!updated[bookName]) updated[bookName] = [];
+      if (!updated[bookName].includes(chapter)) {
+        updated[bookName].push(chapter);
+      }
+      return updated;
+    });
+  };
 
   return (
     <>
       <Navbar />
       <div className="container">
-        {biblia_pentateuco.map((livro) =>
-        (
-          <div>
-            <Book name={livro.name} progress={100} caps={livro.chapters} />
-          </div>
-        ))}
-
-        {/* <Book name="2 Pedro" progress={12} caps={3} /> */}
+        <div className="button-list">
+          {filters.map((filter) => (
+            <button key={filter.group} onClick={() => handleBookFilter(filter.group)}>{filter.label}</button>
+          ))}
+        </div>
+        {books
+          .filter(book => !bookFilter || book.group === bookFilter)
+          .map((book) => {
+            const readChapters = progress[book.id_name]?.length || 0;
+            const total = book.chapters;
+            const percent = Math.round((readChapters / total) * 100);
+            const remainingChapters = total - readChapters;
+            return (
+              <div key={book.id_name}>
+                <Link to={`/${book.id_name}`}>
+                  <Book
+                    name={book.name}
+                    progress={percent}
+                    caps={remainingChapters}
+                    onReadChapter={(cap) => markChapterAsRead(book.name, cap)}
+                  />
+                </Link>
+              </div>
+            );
+          })}
       </div>
-
     </>
-  )
+  );
 }

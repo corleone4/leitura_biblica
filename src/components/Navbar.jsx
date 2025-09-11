@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../css/navbar.css"
+import { Link } from "react-router";
 
 export default function Navbar() {
 
@@ -20,9 +21,9 @@ export default function Navbar() {
 
             </div>
             <nav className={`navbar-items-center ${openNav ? "navbar-toggle-show navbar-items-right" : ""}`}>
-                <div className="navbar-link"><button>Início</button></div>
-                <div className="navbar-link"><button>Metas</button></div>
-                <div className="navbar-link"><button>Ajustes</button></div>
+                <Link to="/" className="navbar-link"><button>Início</button></Link>
+                <Link to="/metas" className="navbar-link"><button>Metas</button></Link>
+                <Link to="/ajustes" className="navbar-link"><button>Ajustes</button></Link>
             </nav>
         </div>
     );

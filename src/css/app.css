@@ -5,6 +5,33 @@
     height: 80vh;
     margin: auto;
     justify-content: start;
-    padding-top: 2rem;
+    padding-top: 0.4rem;
     align-items: center;
+}
+.button-list{
+    margin-bottom: 1.5rem;
+}
+.chapters-container{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width: 60vw;
+    height: 40vh;
+    gap: 15px;
+    margin:auto;
+}
+
+.chapter-select{
+    width: 3.5vw;
+    height: 6vh;
+    padding: 0.5rem;
+    background-color: white;
+    color: black;
+    font-size: 22px;
+    text-align: center;
+}
+
+.selected{
+    background-color: rgb(44, 227, 227);
+    color: white;
 }
