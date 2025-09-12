@@ -3,20 +3,28 @@ import Navbar from "../components/Navbar";
 export default function Ajustes() {
 
     function exportProgresso() {
-        const progresso = localStorage.getItem("progress") || "{}";
-        const blob = new Blob([progresso], { type: "application/json" });
+        const progresso = JSON.parse(localStorage.getItem("progress") || "{}");
+        const data = JSON.parse(localStorage.getItem("date") || "{}");
+        const chapters = JSON.parse(localStorage.getItem("chapters") || "{}");
+
+        const exportObj = { progresso, data, chapters };
+
+        const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: "application/json" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
+
         const dataObj = new Date();
         const dia = String(dataObj.getDate()).padStart(2, '0');
         const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
         const ano = dataObj.getFullYear();
         const formatoManual = `${dia}-${mes}-${ano}`;
+
         a.href = url;
         a.download = `progresso_leitura_${formatoManual}.json`;
         a.click();
         URL.revokeObjectURL(url);
     }
+
 
     function importProgresso(event) {
         const file = event.target.files[0];
@@ -26,8 +34,12 @@ export default function Ajustes() {
         reader.onload = (e) => {
             try {
                 const result = e.target.result;
-                JSON.parse(result);
-                localStorage.setItem("progress", result);
+                const parsed = JSON.parse(result);
+
+                if (parsed.progresso) localStorage.setItem("progress", JSON.stringify(parsed.progresso));
+                if (parsed.data) localStorage.setItem("date", JSON.stringify(parsed.data));
+                if (parsed.chapters) localStorage.setItem("chapters", JSON.stringify(parsed.chapters));
+
                 window.location.reload();
             } catch (err) {
                 alert(`Arquivo inválido! ${err}`);
@@ -35,6 +47,7 @@ export default function Ajustes() {
         };
         reader.readAsText(file);
     }
+
 
     return (<>
         <Navbar />

@@ -55,26 +55,28 @@ export default function App() {
             </button>
           ))}
         </div>
-        {books
-          .filter(book => !bookFilter || book.group === bookFilter)
-          .map((book) => {
-            const readChapters = progress[book.id_name]?.length || 0;
-            const total = book.chapters;
-            const percent = Math.round((readChapters / total) * 100);
-            const remainingChapters = total - readChapters;
-            return (
-              <div key={book.id_name}>
-                <Link to={`/${book.id_name}`}>
-                  <Book
-                    name={book.name}
-                    progress={percent}
-                    caps={remainingChapters}
-                    onReadChapter={(cap) => markChapterAsRead(book.name, cap)}
-                  />
-                </Link>
-              </div>
-            );
-          })}
+        <div className="books-container">
+          {books
+            .filter(book => !bookFilter || book.group === bookFilter)
+            .map((book) => {
+              const readChapters = progress[book.id_name]?.length || 0;
+              const total = book.chapters;
+              const percent = Math.round((readChapters / total) * 100);
+              const remainingChapters = total - readChapters;
+              return (
+                <div key={book.id_name}>
+                  <Link to={`/${book.id_name}`}>
+                    <Book
+                      name={book.name}
+                      progress={percent}
+                      caps={remainingChapters}
+                      onReadChapter={(cap) => markChapterAsRead(book.name, cap)}
+                    />
+                  </Link>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </>
   );

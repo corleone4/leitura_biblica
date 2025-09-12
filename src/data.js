@@ -67,16 +67,20 @@ export const data = [
   { id_name: "apocalipse", name: "Apocalipse", chapters: 22, group: "profecias" }
 ]
 
- export const filters = [
-    { label: "Pentateuco", group: "pentateuco" },
-    { label: "Históricos (A.T)", group: "at_historicos" },
-    { label: "Poéticos", group: "poeticos" },
-    { label: "Profetas (Maiores)", group: "profetas_maiores" },
-    { label: "Profetas (Menores)", group: "profetas_menores" },
-    { label: "Evangelhos", group: "evangelhos" },
-    { label: "Históricos (N.T)", group: "nt_historicos" },
-    { label: "Epístolas de Paulo", group: "cartas_paulo" },
-    { label: "Outras Epístolas", group: "outras_epistolas" },
-    { label: "Profecias", group: "profecias" },
+export const filters = [
+  { label: "Pentateuco", group: "pentateuco" },
+  { label: "Históricos (A.T)", group: "at_historicos" },
+  { label: "Poéticos", group: "poeticos" },
+  { label: "Profetas (Maiores)", group: "profetas_maiores" },
+  { label: "Profetas (Menores)", group: "profetas_menores" },
+  { label: "Evangelhos", group: "evangelhos" },
+  { label: "Históricos (N.T)", group: "nt_historicos" },
+  { label: "Epístolas de Paulo", group: "cartas_paulo" },
+  { label: "Outras Epístolas", group: "outras_epistolas" },
+  { label: "Profecias", group: "profecias" },
 
-  ];
+];
+
+export function diaHoje() {
+  return new Date();
+}
