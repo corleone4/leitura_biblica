@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-
+import "../css/ajustes.css"
 export default function Ajustes() {
 
     function exportProgresso() {
@@ -25,7 +25,6 @@ export default function Ajustes() {
         URL.revokeObjectURL(url);
     }
 
-
     function importProgresso(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -48,26 +47,38 @@ export default function Ajustes() {
         reader.readAsText(file);
     }
 
+    return (
+        <>
+            <Navbar />
+            <div className="container ajustes-page">
+                <h2 className="ajustes-title">Ajustes</h2>
 
-    return (<>
-        <Navbar />
-        <div className="container">
-            {/* a fazer */}
+                <div className="ajustes-card">
+                    <h3>Backup do Progresso</h3>
+                    <p>Exporte seu progresso atual ou importe de um arquivo JSON.</p>
+                    <div className="ajustes-actions">
+                        <button className="btn-export" onClick={exportProgresso}>
+                            Exportar Progresso
+                        </button>
 
-            Ajustes
+                        <label className="btn-import">
+                            Importar Progresso
+                            <input
+                                type="file"
+                                accept=".json"
+                                onChange={importProgresso}
+                                style={{ display: "none" }}
+                            />
+                        </label>
+                    </div>
+                </div>
 
-            <div>
-                <button className="progress-buttons" onClick={exportProgresso}>Exportar Progresso</button>
-                <input
-                    type="file"
-                    accept=".json"
-                    onChange={importProgresso}
-                    className="progress-buttons"
-                    style={{ display: "inline-block", marginLeft: "10px" }}
-                />
+                {/* espaço para futuras opções */}
+                <div className="ajustes-card placeholder">
+                    <h3> Futuras opções</h3>
+                    <p>Mais ferramentas serão adicionadas aqui.</p>
+                </div>
             </div>
-
-        </div>
-    </>
+        </>
     );
 }

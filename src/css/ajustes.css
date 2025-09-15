@@ -1,0 +1,72 @@
+.ajustes-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ajustes-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #e3e5e7;
+  margin-bottom: 1rem;
+}
+
+.ajustes-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: #ecedef;
+}
+
+.ajustes-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.ajustes-card p {
+  margin: 0.5rem 0 1rem 0;
+  color: #bfc4c9;
+}
+
+.ajustes-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-export,
+.btn-import {
+  flex: 1;
+  text-align: center;
+  background: rgb(30, 180, 180);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-size: 0.95rem;
+}
+
+.btn-export:hover,
+.btn-import:hover {
+  background: rgb(20, 140, 140);
+}
+
+.btn-export:active,
+.btn-import:active {
+  transform: scale(0.97);
+}
+
+.btn-import input {
+  display: none;
+}
+
+.placeholder {
+  background: #242424;
+  border: 1px dashed #444;
+  color: #aaa;
+  text-align: center;
+}

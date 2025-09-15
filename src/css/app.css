@@ -1,10 +1,14 @@
 a {
   text-decoration: none;
 }
+body {
+  padding-bottom: 50px;
+}
 
 .container {
   display: flex;
   flex-direction: column;
+  font-family: "Segoe UI", Roboto, sans-serif;
   flex-wrap: wrap;
   width: 95vw;
   max-width: 90%;
@@ -14,6 +18,32 @@ a {
   padding: 0.5rem;
   box-sizing: border-box;
   overflow-x: hidden;
+  padding-bottom: 50px;
+}
+.book {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 100rem;
+  box-sizing: border-box;
+}
+
+.book-title {
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .book {
+    gap: 2px;
+  }
+
+  .book-title {
+    font-size: 16px;
+  }
 }
 
 .books-container {
@@ -24,7 +54,6 @@ a {
   max-width: 75rem;
   margin: 0 auto;
 }
-
 
 .button-list {
   display: flex;
@@ -66,23 +95,56 @@ a {
 }
 
 .chapters-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 60vw;
-  height: 40vh;
-  gap: 15px;
-  margin: auto;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+  
+@media (max-width: 480px) {
+  .chapters-container {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 12px;
+    padding: 10px; 
+  }
+
+  .chapter-select {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 }
 
 .chapter-select {
-  width: 3.5vw;
-  height: 6vh;
-  padding: 0.5rem;
-  background-color: white;
-  color: black;
-  font-size: 22px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  background: #f7f7f7;
+  color: #333;
+  font-size: 1rem;
   text-align: center;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+}
+
+.chapter-select:hover {
+  background: #eaf2ff;
+  border-color: #5fe7f3;
+  transform: scale(1.05);
+}
+
+.chapter-select.selected {
+  background: rgb(21, 214, 214);
+  color: #fff;
+  border-color: rgb(31, 159, 159);
+  font-weight: bold;
 }
 
 .selected {
@@ -93,4 +155,58 @@ a {
 .active {
   background-color: rgb(44, 227, 227);
   color: white;
+}
+
+.chapters-card {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #333333;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.chapters-card .title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #e3e5e7;
+  margin-bottom: 1rem;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form-section label {
+  font-weight: bold;
+  color: #e1ecf7;
+  margin-top: 0.5rem;
+}
+
+.form-section input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.form-section input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-left: 4px solid #3498db;
+  background: #242424;
+  border-radius: 6px;
+  color: #ecedef;
+  gap: 0.5rem;
 }

@@ -7,7 +7,7 @@ export default function BookChapters() {
     const { idName } = useParams();
     const selectedBook = data.find((selBook) => selBook.id_name === idName);
     const [selectedChapters, setSelectedChapters] = useState([]);
-    // Carregar os capítulos já lidos do localStorage
+    
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem("progress")) || {};
         if (saved[idName]) {
@@ -15,12 +15,10 @@ export default function BookChapters() {
         }
     }, [idName]);
 
-    // Salvar os capítulos lidos no localStorage
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem("progress")) || {};
         saved[idName] = selectedChapters;
         localStorage.setItem("progress", JSON.stringify(saved));
-        // console.log(saved);
     }, [selectedChapters, idName]);
 
     function handleSelection(chapterNumber) {
@@ -31,7 +29,6 @@ export default function BookChapters() {
             } else {
                 updated = [...prev, chapterNumber];
             }
-            // Ordena os capítulos
             return updated.sort((a, b) => a - b);
         });
 

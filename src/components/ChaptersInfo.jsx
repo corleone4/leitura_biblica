@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Target, CheckCircle } from "lucide-react";
 
 export default function ChaptersInfo() {
     const [selectedDay, setSelectedDay] = useState(() => {
@@ -27,9 +28,8 @@ export default function ChaptersInfo() {
         return () => window.removeEventListener("storage", calcRemaining);
     }, []);
 
-
     function handleSelectedDay(e) {
-        const value = e.target.value; // yyyy-mm-dd
+        const value = e.target.value;
         calculateByDate(value);
     }
 
@@ -44,7 +44,7 @@ export default function ChaptersInfo() {
         const [year, month, day] = value.split("-");
         const localDate = new Date(year, month - 1, day);
 
-        const formatted = localDate.toLocaleDateString("pt-BR"); // dd/mm/yyyy
+        const formatted = localDate.toLocaleDateString("pt-BR");
         setSelectedDay(formatted);
 
         const today = new Date();
@@ -65,7 +65,6 @@ export default function ChaptersInfo() {
         const [day, month, year] = dateStr.split("/");
         return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
-
 
     function calculateByChapters(chaptersPerDay) {
         if (!chaptersPerDay || chaptersPerDay <= 0) return;
@@ -95,48 +94,52 @@ export default function ChaptersInfo() {
         }
     });
 
-    // mantém os valores salvos
     useEffect(() => {
         localStorage.setItem("chapters", JSON.stringify(chapters));
         localStorage.setItem("date", JSON.stringify(selectedDay));
     }, [chapters, selectedDay]);
 
     return (
-        <>
-            <div>
-                <p>
-                    Informe a quantidade de capítulos que você vai ler por dia e a data
-                    desejada para finalizar a leitura.
-                </p>
-                <label>Capítulos por dia</label>
+        <div className="chapters-card">
+            <h2 className="title">
+                Plano de Leitura
+            </h2>
+
+            <div className="form-section">
+                <label> Capítulos por dia</label>
                 <input
                     type="number"
                     value={chapters}
                     onChange={handleDayChange}
                 />
-                <br />
-                <label> Data Meta </label>
-                <input type="date" value={toInputDateFormat(selectedDay)} onChange={handleSelectedDay} />
+
+                <label>Data Meta</label>
+                <input
+                    type="date"
+                    value={toInputDateFormat(selectedDay)}
+                    onChange={handleSelectedDay}
+                />
             </div>
 
-            <div>
+            <div className="result">
                 {finishDate ? (
                     <p>
-                        Ao ler {chapters} capítulo(s) por dia, você terminará a leitura da
-                        Bíblia em <strong>{finishDate}</strong>.
+                        <CheckCircle size={18} style={{ color: "green", marginRight: "6px", verticalAlign: "middle" }} />
+                        <span>Ao ler <strong>{chapters}</strong> capítulo(s) por dia, você terminará em <strong>{finishDate}</strong>.</span>
                     </p>
                 ) : (
-                    <p>Insira uma quantidade de capítulos...</p>
+                    <p> Insira uma quantidade de capítulos...</p>
                 )}
             </div>
-            <div>
+
+            <div className="result">
                 {selectedDay && chaptersNeeded > 0 && (
                     <p>
-                        Para ler a Bíblia toda até <strong>{selectedDay}</strong>, você
-                        precisa ler {chaptersNeeded} capítulo(s) por dia.
+                        <Target size={18} style={{ color: "#3498db", marginRight: "6px", verticalAlign: "middle" }} />
+                        <span>Para concluir até <strong>{selectedDay}</strong>, precisa ler <strong>{chaptersNeeded}</strong> capítulo(s) por dia.</span>
                     </p>
                 )}
             </div>
-        </>
+        </div>
     );
 }

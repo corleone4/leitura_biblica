@@ -44,20 +44,6 @@ progress::-moz-progress-bar {
   position: absolute;
 }
 
-.book {
-  display: flex;
-  flex-direction: column;
-  width: 23rem;
-  gap: 4px;
-}
-
-.book-title {
-  font-weight: bold;
-  color: white;
-  margin: 0;
-  font-size: 18px;
-}
-
 .chapters-remaining{
   color: white;
   font-size:18px;
