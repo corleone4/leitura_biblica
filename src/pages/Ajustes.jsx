@@ -4,7 +4,7 @@ export default function Ajustes() {
 
     function exportProgresso() {
         const progresso = JSON.parse(localStorage.getItem("progress") || "{}");
-        const data = JSON.parse(localStorage.getItem("date") || "{}");
+        const data = localStorage.getItem("date") || "";
         const chapters = JSON.parse(localStorage.getItem("chapters") || "{}");
 
         const exportObj = { progresso, data, chapters };
@@ -36,7 +36,7 @@ export default function Ajustes() {
                 const parsed = JSON.parse(result);
 
                 if (parsed.progresso) localStorage.setItem("progress", JSON.stringify(parsed.progresso));
-                if (parsed.data) localStorage.setItem("date", JSON.stringify(parsed.data));
+                if (parsed.data) localStorage.setItem("date", parsed.data);
                 if (parsed.chapters) localStorage.setItem("chapters", JSON.stringify(parsed.chapters));
 
                 window.location.reload();
@@ -46,6 +46,7 @@ export default function Ajustes() {
         };
         reader.readAsText(file);
     }
+
 
     return (
         <>
